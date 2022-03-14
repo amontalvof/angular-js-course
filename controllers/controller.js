@@ -9,9 +9,19 @@ app.controller('FirstController', [
             { comment: 'Good', username: 'Homer' },
             { comment: 'Bad', username: 'Lisa' },
         ];
+        $scope.posts = [];
         $scope.addComment = function () {
             $scope.comments.push($scope.newComment);
             $scope.newComment = {};
         };
+        $http.get('https://jsonplaceholder.typicode.com/posts').then(
+            function ({ data }) {
+                console.log(data);
+                $scope.posts = data;
+            },
+            function (error) {
+                console.error(error);
+            }
+        );
     },
 ]);
