@@ -1,33 +1,14 @@
-const app = angular.module('MyFirstApp', []);
+const app = angular.module('ToDoList', ['LocalStorageModule']);
 
-app.controller('FirstController', [
+app.controller('ToDoController', [
     '$scope',
-    '$http',
-    function ($scope, $http) {
-        $scope.posts = [];
-        $scope.newPost = {};
-        $http.get('https://jsonplaceholder.typicode.com/posts').then(
-            function ({ data }) {
-                $scope.posts = data;
-            },
-            function (error) {
-                console.error(error);
-            }
-        );
-        $scope.addPost = function () {
-            $http
-                .post('https://jsonplaceholder.typicode.com/posts', {
-                    ...$scope.newPost,
-                })
-                .then(
-                    function ({ data }) {
-                        $scope.posts.unshift(data);
-                        $scope.newPost = {};
-                    },
-                    function (error) {
-                        console.error(error);
-                    }
-                );
+    '$localStorageService',
+    function ($scope, $localStorageService) {
+        $scope.todo = [];
+
+        $scope.addTodo = function () {
+            $scope.todo.push($scope.newTodo);
+            $scope.newTodo = {};
         };
     },
 ]);
