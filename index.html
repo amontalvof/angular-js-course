@@ -7,5 +7,16 @@
         <script src="/lib/angular-local-storage.min.js"></script>
         <script src="/controllers/controller.js"></script>
     </head>
-    <body ng-controller="ToDoController"></body>
+    <body ng-controller="ToDoController">
+        <form ng-submit="addTodo()">
+            <input type="text" ng-model="newTodo.description" />
+            <input type="datetime-local" ng-model="newTodo.date" />
+            <input type="submit" value="Save" />
+        </form>
+        <ul>
+            <li ng-repeat="todo in todos">
+                {{todo.description}} - {{todo.date.toLocaleString()}}
+            </li>
+        </ul>
+    </body>
 </html>

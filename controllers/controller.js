@@ -2,12 +2,16 @@ const app = angular.module('ToDoList', ['LocalStorageModule']);
 
 app.controller('ToDoController', [
     '$scope',
-    '$localStorageService',
-    function ($scope, $localStorageService) {
-        $scope.todo = [];
-
+    'localStorageService',
+    function ($scope, localStorageService) {
+        if (localStorageService.get('angular-todoList')) {
+            $scope.todos = localStorageService.get('angular-todoList');
+        } else {
+            $scope.todos = [];
+        }
+        $scope.newTodo = {};
         $scope.addTodo = function () {
-            $scope.todo.push($scope.newTodo);
+            $scope.todos.unshift($scope.newTodo);
             $scope.newTodo = {};
         };
     },
