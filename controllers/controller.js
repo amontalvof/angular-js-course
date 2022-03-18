@@ -13,6 +13,11 @@ app.controller('ToDoController', [
         $scope.addTodo = function () {
             $scope.todos.unshift($scope.newTodo);
             $scope.newTodo = {};
+            localStorageService.set('angular-todoList', $scope.todos);
+        };
+        $scope.clearTodos = function () {
+            $scope.todos = [];
+            localStorageService.set('angular-todoList', $scope.todos);
         };
     },
 ]);

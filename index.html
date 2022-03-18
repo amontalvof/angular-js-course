@@ -12,10 +12,11 @@
             <input type="text" ng-model="newTodo.description" />
             <input type="datetime-local" ng-model="newTodo.date" />
             <input type="submit" value="Save" />
+            <button type="button" ng-click="clearTodos()">Clear</button>
         </form>
         <ul>
             <li ng-repeat="todo in todos">
-                {{todo.description}} - {{todo.date.toLocaleString()}}
+                {{todo.description}} - {{todo.date | date:'short'}}
             </li>
         </ul>
     </body>
