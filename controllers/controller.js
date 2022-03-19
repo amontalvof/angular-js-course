@@ -9,7 +9,9 @@ app.controller('ToDoController', [
         } else {
             $scope.todos = [];
         }
-        $scope.newTodo = {};
+        $scope.$watchCollection('todos', function () {
+            localStorageService.set('angular-todoList', $scope.todos);
+        });
         $scope.addTodo = function () {
             $scope.todos.unshift($scope.newTodo);
             $scope.newTodo = {};
@@ -17,7 +19,6 @@ app.controller('ToDoController', [
         };
         $scope.clearTodos = function () {
             $scope.todos = [];
-            localStorageService.set('angular-todoList', $scope.todos);
         };
     },
 ]);
