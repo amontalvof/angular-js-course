@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="ToDoList">
+<html lang="en" ng-app="mainModule">
     <head>
         <meta charset="UTF-8" />
         <title>Angular JS</title>
@@ -7,17 +7,11 @@
         <script src="/lib/angular-local-storage.min.js"></script>
         <script src="/controllers/controller.js"></script>
     </head>
-    <body ng-controller="ToDoController">
-        <form ng-submit="addTodo()">
-            <input type="text" ng-model="newTodo.description" />
-            <input type="datetime-local" ng-model="newTodo.date" />
-            <input type="submit" value="Save" />
-            <button type="button" ng-click="clearTodos()">Clear</button>
-        </form>
-        <ul>
-            <li ng-repeat="todo in todos">
-                {{todo.description}} - {{todo.date | date:'short'}}
-            </li>
-        </ul>
+    <body ng-controller="FiltersController">
+        {{my_html | removeHTML}}
+        <br />
+        {{my_html_2 | json}}
+        <br />
+        {{price | currency:'€'}}
     </body>
 </html>

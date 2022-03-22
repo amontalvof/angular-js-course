@@ -1,24 +1,14 @@
-const app = angular.module('ToDoList', ['LocalStorageModule']);
-
-app.controller('ToDoController', [
-    '$scope',
-    'localStorageService',
-    function ($scope, localStorageService) {
-        if (localStorageService.get('angular-todoList')) {
-            $scope.todos = localStorageService.get('angular-todoList');
-        } else {
-            $scope.todos = [];
-        }
-        $scope.$watchCollection('todos', function () {
-            localStorageService.set('angular-todoList', $scope.todos);
-        });
-        $scope.addTodo = function () {
-            $scope.todos.unshift($scope.newTodo);
-            $scope.newTodo = {};
-            localStorageService.set('angular-todoList', $scope.todos);
+const app = angular
+    .module('mainModule', [])
+    .filter('removeHTML', function () {
+        return function (text) {
+            return String(text).replace(/<[^>]+>/gm, '');
         };
-        $scope.clearTodos = function () {
-            $scope.todos = [];
-        };
-    },
-]);
+    })
+    .controller('FiltersController', function ($scope) {
+        $scope.my_html = '<p>Hello World</p>';
+        $scope.my_html_2 = {};
+        $scope.my_html_2.tile = 'Lorem';
+        $scope.my_html_2.body = 'Lorem ipsum';
+        $scope.price = 2;
+    });
