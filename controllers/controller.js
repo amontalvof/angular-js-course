@@ -1,14 +1,16 @@
-const app = angular
-    .module('mainModule', [])
-    .filter('removeHTML', function () {
-        return function (text) {
-            return String(text).replace(/<[^>]+>/gm, '');
-        };
-    })
-    .controller('FiltersController', function ($scope) {
-        $scope.my_html = '<p>Hello World</p>';
-        $scope.my_html_2 = {};
-        $scope.my_html_2.tile = 'Lorem';
-        $scope.my_html_2.body = 'Lorem ipsum';
-        $scope.price = 2;
+const app = angular.module('mainModule', []);
+
+app.controller('FirstController', function ($scope) {
+    $scope.name = 'Andy';
+    setTimeout(function () {
+        $scope.$apply(function () {
+            $scope.name = 'Hello';
+        });
+    }, 2000);
+    document.querySelector('#my_button').addEventListener('click', function () {
+        $scope.$apply(function () {
+            $scope.name = 'Hello World';
+            console.log($scope.name);
+        });
     });
+});

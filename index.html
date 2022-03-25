@@ -7,11 +7,8 @@
         <script src="/lib/angular-local-storage.min.js"></script>
         <script src="/controllers/controller.js"></script>
     </head>
-    <body ng-controller="FiltersController">
-        {{my_html | removeHTML}}
-        <br />
-        {{my_html_2 | json}}
-        <br />
-        {{price | currency:'€'}}
+    <body ng-controller="FirstController">
+        <h1>{{name}}</h1>
+        <button id="my_button">Click here</button>
     </body>
 </html>
