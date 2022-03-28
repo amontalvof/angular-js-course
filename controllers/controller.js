@@ -1,16 +1,21 @@
-const app = angular.module('mainModule', []);
+const app = angular.module('MyFirstApp', []);
 
-app.controller('FirstController', function ($scope) {
-    $scope.name = 'Andy';
-    setTimeout(function () {
-        $scope.$apply(function () {
-            $scope.name = 'Hello';
-        });
-    }, 2000);
-    document.querySelector('#my_button').addEventListener('click', function () {
-        $scope.$apply(function () {
-            $scope.name = 'Hello World';
-            console.log($scope.name);
-        });
-    });
-});
+app.controller('FirstController', [
+    '$scope',
+    '$http',
+    function ($scope, $http) {
+        $scope.posts = [];
+        $scope.loading = true;
+        $http.get('https://jsonplaceholder.typicode.com/posts').then(
+            function ({ data }) {
+                $scope.posts = data;
+                $scope.loading = false;
+            },
+            function (error) {
+                console.error(error);
+                $scope.loading = false;
+            }
+        );
+        
+    },
+]);
