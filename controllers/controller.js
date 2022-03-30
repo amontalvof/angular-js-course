@@ -1,21 +1,15 @@
-const app = angular.module('MyFirstApp', []);
+const app = angular.module('MyFirstApp', []).run(function ($rootScope) {
+    $rootScope.name = 'Hello world';
+});
 
 app.controller('FirstController', [
     '$scope',
-    '$http',
-    function ($scope, $http) {
-        $scope.posts = [];
-        $scope.loading = true;
-        $http.get('https://jsonplaceholder.typicode.com/posts').then(
-            function ({ data }) {
-                $scope.posts = data;
-                $scope.loading = false;
-            },
-            function (error) {
-                console.error(error);
-                $scope.loading = false;
-            }
-        );
-        
+    function ($scope) {
+        $scope.name = 'lorem';
+        setTimeout(function () {
+            $scope.$apply(function () {
+                $scope.name = 'ipsum';
+            });
+        }, 1000);
     },
-]);
+]).controller('ChildController', ['$scope', function ($scope) {}]);

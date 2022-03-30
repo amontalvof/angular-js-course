@@ -4,13 +4,13 @@
         <meta charset="UTF-8" />
         <title>Angular JS</title>
         <style>
-            .animated{
+            .animated {
                 opacity: 1;
                 max-height: auto;
                 overflow: hidden;
                 transition: all 2s;
             }
-            .animated.ng-hide{
+            .animated.ng-hide {
                 opacity: 0;
                 max-height: 0px !important;
                 display: block !important;
@@ -20,13 +20,11 @@
         <script src="/controllers/controller.js"></script>
     </head>
     <body ng-controller="FirstController">
-        <div ng-show="loading"><h1>Loading...</h1></div>
-        <div ng-show="!loading && posts.length === 0" ><h1>No results found!</h1></div>
-        <ul ng-show="posts.length !== 0" class="animated">
-            <li ng-repeat="post in posts">
-                <h2>{{post.title}}</h2>
-                <p>{{post.body}}</p>
-            </li>
-        </ul>
+        {{name}}
+        <p><strong>parent value:</strong> {{$parent.name}}</p>
+        <div ng-controller="ChildController">
+            <p><strong>child value:</strong> {{name}}</p>
+            <input type="text" ng-model="$parent.name" />
+        </div>
     </body>
 </html>
