@@ -1,35 +1,32 @@
 const app = angular.module('ToDoList', ['LocalStorageModule']);
 
-app.factory('ToDoService', function (localStorageService) {
-    const todoService = {
-        key: 'angular-todoList',
-        todos: [],
-    };
-    if (localStorageService.get(todoService.key)) {
-        todoService.todos = localStorageService.get(todoService.key);
+app.service('ToDoService', function (localStorageService) {
+    this.key='angular-todoList'
+    this.todos=[]
+    if (localStorageService.get(this.key)) {
+        this.todos = localStorageService.get(this.key);
     } else {
-        todoService.todos = [];
+        this.todos = [];
     }
-    todoService.add = function (newTodo) {
-        todoService.todos.unshift(newTodo);
-        todoService.updateLocalStorage();
+    this.add = function (newTodo) {
+        this.todos.unshift(newTodo);
+        this.updateLocalStorage();
     };
-    todoService.updateLocalStorage = function () {
-        localStorageService.set(todoService.key, todoService.todos);
+    this.updateLocalStorage = function () {
+        localStorageService.set(this.key, this.todos);
     };
-    todoService.clean = function () {
-        todoService.todos = [];
-        todoService.updateLocalStorage();
+    this.clean = function () {
+        this.todos = [];
+        this.updateLocalStorage();
     };
-    todoService.getAll = function () {
-        return todoService.todos;
+    this.getAll = function () {
+        return this.todos;
     };
-    todoService.removeItem = function (item) {
-        todoService.todos = todoService.todos.filter((todo) => todo !== item);
-        todoService.updateLocalStorage();
-        return todoService.getAll();
+    this.removeItem = function (item) {
+        this.todos = this.todos.filter((todo) => todo !== item);
+        this.updateLocalStorage();
+        return this.getAll();
     };
-    return todoService;
 }).controller('ToDoController', [
     '$scope',
     'ToDoService',
