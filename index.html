@@ -1,30 +1,17 @@
 <!DOCTYPE html>
-<html lang="en" ng-app>
+<html lang="en" ng-app="CustomDirective">
     <head>
-        <style>
-            .hover {
-                background-color: rgb(200, 100, 100);
-                color: white;
-            }
-            .no-hover {
-                background-color: rgb(100, 100, 200);
-                color: white;
-            }
-        </style>
         <meta charset="UTF-8" />
         <title>Angular JS</title>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+        <script src="controllers/controller.js"></script>
     </head>
-    <body>
-        <button
-            ng-class="{'hover': flag, 'no-hover': !flag}"
-            ng-click="flag = !flag"
-            ng-mouseover="flag = true"
-            ng-mouseout="flag = false"
-        >
-            Hover me
-        </button>
-        <span ng-show="flag">&lt;- click me</span>
-        <p>{{flag | json}}</p>
+    <body ng-controller="AppCtrl">
+        <ul class="no-list" ng-cloak>
+            <li ng-repeat="repo in repos">
+                <img ng-src="{{repo.owner.avatar_url}}" alt="" />
+                <h1>{{repo.name}}</h1>
+            </li>
+        </ul>
     </body>
 </html>
