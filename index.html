@@ -5,11 +5,19 @@
         <title>Angular JS</title>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
         <script src="controllers/controller.js"></script>
+        <style>
+            .circle {
+                width: 100px;
+                height: 100px;
+                border-radius: 50%;
+                display: inline-block;
+            }
+        </style>
     </head>
     <body ng-controller="AppCtrl">
         <ul class="no-list" ng-cloak>
             <li ng-repeat="repo in repos">
-                <img ng-src="{{repo.owner.avatar_url}}" alt="" />
+                <div class="circle" back-img="{{repo.owner.avatar_url}}"></div>
                 <h1>{{repo.name}}</h1>
             </li>
         </ul>
