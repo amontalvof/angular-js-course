@@ -4,6 +4,12 @@
         <meta charset="UTF-8" />
         <title>Angular JS</title>
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+        <link
+            rel="stylesheet"
+            href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+        />
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script src="controllers/controller.js"></script>
         <style>
             .circle {
@@ -12,14 +18,41 @@
                 border-radius: 50%;
                 display: inline-block;
             }
+            .no-list li {
+                list-style-type: none;
+            }
+            body,
+            html {
+                text-align: center;
+                background-color: #eee;
+                margin: 0px;
+            }
+            #mySearch {
+                width: 500px;
+                height: 30px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                padding: 5px 10px;
+                margin: 50px auto;
+            }
         </style>
     </head>
     <body ng-controller="AppCtrl">
-        <ul class="no-list" ng-cloak>
-            <li ng-repeat="repo in repos">
+        <input
+            id="mySearch"
+            type="text"
+            my-autocomplete
+            placeholder="Search repo"
+        />
+        <ul class="no-list">
+            <li
+                ng-repeat="repo in posts"
+                ng-hide="main_repo && main_repo !== repo.name"
+            >
                 <div class="circle" back-img="{{repo.owner.avatar_url}}"></div>
                 <h1>{{repo.name}}</h1>
             </li>
         </ul>
+        <button ng-click="main_repo = null">Clear</button>
     </body>
 </html>
