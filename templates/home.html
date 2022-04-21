@@ -1,13 +1,8 @@
-<input id="mySearch" type="text" my-autocomplete placeholder="Search repo" />
-<ul class="no-list">
-    <li
-        ng-repeat="repo in posts"
-        ng-hide="main_repo && main_repo !== repo.name"
-    >
-        <a href="#!/repo/{{repo.name}}">
-            <div class="circle" back-img="{{repo.owner.avatar_url}}"></div>
-            <h1>{{repo.name}}</h1>
-        </a>
-    </li>
-</ul>
-<button ng-click="main_repo = null">Clear</button>
+<lx-tabs>
+    <lx-tab heading="Posts">
+        <div class="p+">Hello world</div>
+    </lx-tab>
+    <lx-tab heading="Users">
+        <div class="p+">Lorem ipsum</div>
+    </lx-tab>
+</lx-tabs>
